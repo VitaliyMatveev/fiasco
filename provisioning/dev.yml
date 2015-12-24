@@ -1,0 +1,16 @@
+# Окружение для разработки
+---
+- hosts: development
+  become: yes
+
+  pre_tasks:
+    - name: "Autofollow to project on logon"
+      lineinfile:
+        dest: "/home/vagrant/.bashrc"
+        regexp: "^cd ~/fiasco"
+        line: "cd ~/fiasco"
+
+  roles:
+    - role: apt
+    - role: ruby_brightbox
+    - role: postgresql

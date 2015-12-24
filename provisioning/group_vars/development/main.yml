@@ -1,0 +1,37 @@
+---
+apt_packages:
+  - git
+  - libpq-dev
+  - mc
+  - vim
+  - wget
+  - ruby2.0-dev
+
+ruby_version: 2.0
+
+postgresql_databases:
+  - name: fiasco_db
+    owner: user_fsc          # optional; specify the owner of the database
+    hstore: yes         # flag to install the hstore extension on this database (yes/no)
+    uuid_ossp: yes      # flag to install the uuid-ossp extension on this database (yes/no)
+    citext: yes         # flag to install the citext extension on this database (yes/no)
+
+# List of database extensions to be created (optional)
+postgresql_database_extensions:
+  - db: fiasco_db
+    extensions:
+      - hstore
+      - citext
+
+# List of users to be created (optional)
+postgresql_users:
+  - name: user_fsc
+    pass: 123456
+    encrypted: no       # denotes if the password is already encrypted.
+
+# List of user privileges to be applied (optional)
+postgresql_user_privileges:
+  - name: user_fsc                   # user name
+    db: fiasco_db                  # database
+    priv: "ALL"                 # privilege string format: example: INSERT,UPDATE/table:SELECT/anothertable:ALL
+    role_attr_flags: "CREATEDB" # role attribute flags

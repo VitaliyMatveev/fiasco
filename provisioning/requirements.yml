@@ -1,0 +1,9 @@
+- src: ssh://git@sykav-sr-pr-004.domain.local:7999/ansbl/apt.git
+  scm: git
+
+- src: ssh://git@sykav-sr-pr-004.domain.local:7999/ansbl/ruby_brightbox.git
+  scm: git
+
+- src: https://github.com/ANXS/postgresql.git
+  scm: git
+  name: postgresql
