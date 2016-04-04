@@ -9,8 +9,16 @@
         dest: "/home/vagrant/.bashrc"
         regexp: "^cd ~/fiasco"
         line: "cd ~/fiasco"
+    - name: "Set env variable"
+      lineinfile:
+        dest: "/home/vagrant/.bashrc"
+        regexp: "^export {{ item.var }}="
+        line: "export {{ item.var }}={{ item.value }}"
+      with_items:
+      - { var: "PGUSER", value: "user_fsc"}
+      - { var: "PGDATABASE", value: "fiasco_db"}
 
   roles:
+    - role: ruby-brightbox
     - role: apt
-    - role: ruby_brightbox
     - role: postgresql

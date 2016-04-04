@@ -25,7 +25,12 @@ Vagrant.configure(2) do |config|
   host_port = 8085
   dev_ip = "192.168.33.99"
   config.vm.box = "ubuntu/trusty64"
-  config.vm.network 'forwarded_port',  guest: guest_port, host: host_port
+  config.vm.network 'forwarded_port',  guest:
+  guest_port, host: host_port
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.memory = 8000
+  end
 
   config.vm.define "dev", primary: true do |dev|
     dev.vm.hostname = "fsc-dev"

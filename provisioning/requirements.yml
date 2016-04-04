@@ -1,8 +1,8 @@
-- src: ssh://git@sykav-sr-pr-004.domain.local:7999/ansbl/apt.git
-  scm: git
+- src: https://github.com/vterdunov/ansible-apt
+  name: apt
 
-- src: ssh://git@sykav-sr-pr-004.domain.local:7999/ansbl/ruby_brightbox.git
-  scm: git
+- src: https://github.com/vterdunov/ansible-ruby-brightbox
+  name: ruby-brightbox
 
 - src: https://github.com/ANXS/postgresql.git
   scm: git
