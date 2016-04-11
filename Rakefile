@@ -1,6 +1,7 @@
 #encoding: utf-8
 
-spec = Gem::Specification.find_by_name 'fias'
+#spec = Gem::Specification.find_by_name 'fias'
+spec = Gem::Specification.find_all_by_name ['pg_closure_tree_rebuild','fias']
 Dir.glob("#{spec.gem_dir}/tasks/*.rake") { |file| load file }
 
 namespace :fiasco do

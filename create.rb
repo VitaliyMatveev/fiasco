@@ -37,6 +37,7 @@ def create_table
     column :name, :text
     column :abbr, :text
     column :code, :text
+    column :level, :integer
     column :region, :text
     column :center, :boolean
   end
@@ -64,6 +65,7 @@ def copy_fias_data
       row[:formalname],
       row[:shortname],
       row[:code],
+      row[:aolevel],
       row[:regioncode],
       row[:centerst].to_i > 0
     ])
@@ -71,7 +73,7 @@ def copy_fias_data
 
   io = encoder.get_io
 
-  columns = %i(aoid aoguid parentguid name abbr code region center)
+  columns = %i(aoid aoguid parentguid name abbr code level region center)
 
   DB.copy_into(ADDRESS_OBJECTS_TABLE_NAME, columns: columns, format: :binary) do
     begin
