@@ -3,7 +3,7 @@ require 'sinatra'
 require 'fias'
 require 'sequel'
 
-DB =  Sequel.connect('postgres://localhost/fiasco_db')
+DB =  Sequel.connect(ENV['DATABASE_URL'])
 
 configure :development do
  set :bind, '0.0.0.0'
@@ -25,7 +25,10 @@ get '/:parent_id' do
     .to_a
   if(adrs.blank?)
     adr = DB[:address_objects].where(:aoguid => params["parent_id"]).first
-    return DB.from("fias_house#{adr[:region]}").where(aoguid: adr[:aoguid]).to_a.to_json
+    return DB.from("fias_house#{adr[:region]}")
+      .where(aoguid: adr[:aoguid])
+      .order(:housenum)
+      .to_a.to_json
   else
     return adrs.to_json
   end
